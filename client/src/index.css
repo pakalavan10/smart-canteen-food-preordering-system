@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Styles & Warm Ambient Background ──────────────────────── */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply font-sans antialiased selection:bg-primary-500 selection:text-white;
+    @apply bg-[#FFFDFC] text-surface-900;
+    @apply dark:bg-surface-950 dark:text-surface-100;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(251, 224, 211, 0.55) 0px, transparent 55%),
+      radial-gradient(at 100% 0%, rgba(255, 240, 232, 0.6) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(248, 201, 91, 0.12) 0px, transparent 55%);
+    background-attachment: fixed;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(at 0% 0%, rgba(194, 59, 56, 0.12) 0px, transparent 55%),
+      radial-gradient(at 100% 0%, rgba(226, 138, 40, 0.08) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(232, 93, 90, 0.1) 0px, transparent 55%);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-300/80 dark:bg-surface-700/80 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-400 dark:bg-primary-600;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ─── Warm Food-Themed Design Token Layer ────────────────────────── */
+@layer components {
+  /* Core Warm Card */
+  .glass {
+    @apply bg-white dark:bg-surface-900/80;
+    @apply border border-[#F0DDD3] dark:border-surface-700/70;
+    @apply rounded-2xl;
+    @apply shadow-glass dark:shadow-glass-dark;
+    position: relative;
+  }
+
+  .glass-card {
+    @apply glass p-6;
+  }
+
+  .glass-panel {
+    @apply bg-white/80 dark:bg-surface-900/60;
+    @apply border border-[#F0DDD3] dark:border-surface-700/60;
+    @apply rounded-2xl;
+  }
+
+  /* Interactive Hover Card */
+  .glass-hover {
+    @apply glass;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:-translate-y-1.5;
+    @apply hover:shadow-soft-lg hover:shadow-primary-500/10;
+    @apply hover:border-primary-300/70 dark:hover:border-primary-500/50;
+  }
+
+  /* Decorative Blobs */
+  .glow-orb {
+    @apply absolute rounded-full blur-3xl pointer-events-none opacity-50 dark:opacity-30 animate-float;
+  }
+
+  .glow-orb-primary {
+    @apply bg-gradient-to-br from-primary-200 via-primary-300 to-accent-200;
+  }
+
+  .glow-orb-accent {
+    @apply bg-gradient-to-br from-accent-200 via-accent-300 to-primary-200;
+  }
+
+  /* Gradient Text Utilities */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 dark:from-primary-400 dark:via-primary-300 dark:to-accent-300 font-extrabold;
+  }
+
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary-500 to-primary-600;
+  }
+
+  .gradient-hero {
+    @apply bg-gradient-to-br from-peach via-[#FFF8F2] to-cream;
+  }
+
+  .gradient-accent {
+    @apply bg-gradient-to-r from-accent-500 to-accent-600;
+  }
+
+  .gradient-warm {
+    @apply bg-gradient-to-r from-primary-500 via-accent-500 to-gold;
+  }
+
+  /* Warm Buttons */
+  .btn-primary {
+    @apply px-6 py-3.5 rounded-full font-bold text-sm tracking-wide;
+    @apply bg-primary-500 text-white;
+    @apply hover:bg-primary-600;
+    @apply active:scale-[0.97];
+    @apply transition-all duration-200;
+    @apply shadow-coral hover:shadow-coral-lg;
+    @apply border border-primary-600/20;
+    @apply flex items-center justify-center gap-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3.5 rounded-full font-bold text-sm tracking-wide;
+    @apply bg-white dark:bg-surface-800 text-primary-600 dark:text-primary-400;
+    @apply border border-primary-400/60 dark:border-primary-500/50;
+    @apply hover:bg-primary-50 dark:hover:bg-surface-700;
+    @apply active:scale-[0.97];
+    @apply transition-all duration-200;
+    @apply shadow-sm hover:shadow-soft-md;
+    @apply flex items-center justify-center gap-2;
+  }
+
+  .btn-accent {
+    @apply px-6 py-3.5 rounded-full font-bold text-sm tracking-wide;
+    @apply bg-accent-500 text-white;
+    @apply hover:bg-accent-600;
+    @apply active:scale-[0.97];
+    @apply transition-all duration-200;
+    @apply shadow-orange-glow;
+    @apply border border-accent-600/20;
+    @apply flex items-center justify-center gap-2;
+  }
+
+  .btn-danger {
+    @apply px-6 py-3.5 rounded-full font-bold text-sm tracking-wide;
+    @apply bg-danger-500 text-white;
+    @apply hover:bg-danger-600;
+    @apply active:scale-[0.97];
+    @apply transition-all duration-200;
+    @apply shadow-lg shadow-danger-500/30;
+    @apply border border-danger-600/20;
+    @apply flex items-center justify-center gap-2;
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2.5 rounded-full font-semibold text-sm;
+    @apply text-surface-600 dark:text-surface-400;
+    @apply hover:bg-primary-50 dark:hover:bg-surface-800 hover:text-primary-600 dark:hover:text-primary-400;
+    @apply transition-all duration-200;
+  }
+
+  /* Warm Inputs */
+  .input-field {
+    @apply w-full px-4 py-3.5 rounded-2xl text-sm font-medium;
+    @apply bg-white dark:bg-surface-800;
+    @apply border border-[#F0DDD3] dark:border-surface-700;
+    @apply text-surface-900 dark:text-surface-100;
+    @apply placeholder-surface-400 dark:placeholder-surface-500;
+    @apply focus:outline-none focus:ring-4 focus:ring-primary-500/15 focus:border-primary-500 dark:focus:border-primary-400;
+    @apply transition-all duration-200;
+    @apply shadow-sm;
+  }
+
+  /* Warm Badges */
+  .badge {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold tracking-wide border;
+  }
+
+  .badge-primary {
+    @apply bg-primary-500/10 text-primary-700 dark:text-primary-300 border-primary-500/30;
+  }
+  .badge-success {
+    @apply bg-success-500/10 text-success-700 dark:text-success-300 border-success-500/30;
+  }
+  .badge-warning {
+    @apply bg-warning-500/10 text-warning-700 dark:text-warning-300 border-warning-500/30;
+  }
+  .badge-danger {
+    @apply bg-danger-500/10 text-danger-700 dark:text-danger-300 border-danger-500/30;
+  }
+  .badge-info {
+    @apply bg-accent-500/10 text-accent-700 dark:text-accent-300 border-accent-500/30;
+  }
+
+  /* Navigation Links */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3.5 rounded-2xl;
+    @apply text-surface-600 dark:text-surface-400;
+    @apply hover:bg-peach dark:hover:bg-surface-800/70;
+    @apply hover:text-primary-600 dark:hover:text-primary-400;
+    @apply transition-all duration-200;
+    @apply font-semibold text-sm;
+  }
+
+  .sidebar-link-active {
+    @apply sidebar-link;
+    @apply bg-primary-500/10 dark:bg-primary-500/20;
+    @apply text-primary-600 dark:text-primary-400;
+    @apply shadow-sm shadow-primary-500/10;
+    @apply font-bold;
+  }
+
+  /* Shimmer Skeleton Loading */
+  .skeleton {
+    @apply bg-surface-200/80 dark:bg-surface-800/80 rounded-2xl;
+    @apply animate-shimmer;
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+
+  /* Container & Section Header */
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+
+  .section-header {
+    @apply font-display text-2xl font-bold text-surface-900 dark:text-white tracking-tight;
+  }
+}
+
+/* ─── Utilities ──────────────────────────────────────────────────── */
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 18px rgba(232, 93, 90, 0.45);
+  }
+  .border-glass {
+    @apply border border-[#F0DDD3] dark:border-surface-700;
+  }
+  .bg-hero-warm {
+    background-image:
+      radial-gradient(at 20% 10%, rgba(251, 224, 211, 0.8) 0px, transparent 50%),
+      radial-gradient(at 85% 20%, rgba(255, 240, 232, 0.9) 0px, transparent 45%),
+      radial-gradient(at 50% 95%, rgba(248, 201, 91, 0.18) 0px, transparent 55%);
+  }
+}

@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Production builds
+dist/
+build/
+
+# Environment variables (never commit real secrets)
+.env
+.env.*
+!.env.example
+
+# Test coverage
+coverage/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Uploaded content (runtime)
+server/uploads/*
+!server/uploads/.gitkeep
+
+# Generated files
+*.pdf
+!README.md
+
+# Local tooling / junk in repo root
+git_bin/
+.git_bin/
+*.zip
+git_runner.js
+zip_project.ps1
+generate_pdf.js
+documentation.html
